@@ -27,6 +27,14 @@ exports.config = {
   exclude: [
     // 'path/to/excluded/files'
   ],
+  suites: {
+    login: [
+      './specs/login/**/*.test.js',
+    ],
+    notes: [
+      './specs/notes/**/*.test.js',
+    ],
+  },
   //
   // ============
   // Capabilities

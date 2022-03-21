@@ -1,9 +1,9 @@
-const landingPage = require("../pageobjects/landing.page");
-const loginPage = require("../pageobjects/login.page");
-const mainPage = require("../pageobjects/main.page");
-const { email, password } = require("../configs/credentials.json");
+const landingPage = require("../../pageobjects/landing.page");
+const loginPage = require("../../pageobjects/login.page");
+const mainPage = require("../../pageobjects/main.page");
+const { email, password } = require("../../configs/credentials.json");
 
-describe("Unsuccessfull login", function () {
+describe("Login Tests", function () {
   beforeEach(async function () {
     await landingPage.open();
     await landingPage.clickLogInButton();
