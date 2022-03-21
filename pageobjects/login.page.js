@@ -1,5 +1,4 @@
 const Page = require("./page");
-const mainPage = require("./main.page");
 const { Input, Button, Text } = require("../elements/index");
 
 class LoginPage extends Page {

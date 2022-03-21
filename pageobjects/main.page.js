@@ -12,6 +12,9 @@ class MainPage extends Page {
   get userDetails() {
     return new Button("#qa-NAV_USER");
   }
+  get logoutButton() {
+    return new Button(`//li//span[contains(text(), "Sign out")]`);
+  }
   get newNoteButton() {
     return new Button("#qa-HOME_NOTE_WIDGET_CREATE_NOTE");
   }
@@ -39,10 +42,17 @@ class MainPage extends Page {
         timeout: 15000,
         timeoutMsg: `Note hasn't been saved`,
       }
-    )
+    );
+    await browser.pause(5000);
   }
   async clickNewNoteButton() {
     await this.newNoteButton.click();
+  }
+  async clickUserDetails() {
+    await this.userDetails.click();
+  }
+  async clickLogoutButton() {
+    await this.logoutButton.click();
   }
   async fillNoteTitle(text) {
     await this.noteTitle.setValue(text);
