@@ -1,5 +1,6 @@
 const Page = require("./page");
 const { Button, Text, IFrame, Input } = require("../elements/index");
+const timeouts = require("../configs/timeouts.json");
 
 class MainPage extends Page {
   constructor() {
@@ -27,23 +28,22 @@ class MainPage extends Page {
   get noteBody() {
     return new Input("#en-note");
   }
-  get syncStatus() {
-    return new Text(`div[data-tooltipmark="syncstatusindicator"]`);
+  get noteCardBodyText() {
+    return new Text(`(//div[contains(@id, "qa-NOTES_SIDEBAR_NOTE_SNIPPET")])[1]`);
   }
 
   async waitForLoaderToDisappear() {
     await this.spinner.waitForDisplayed();
     await this.userDetails.waitForDisplayed();
   }
-  async waitSyncStatusSaved() {
+  async waitForNoteSaved(text) {
     await browser.waitUntil(
-      async () => await this.syncStatus.getText() === "All changes saved",
+      async () => await this.noteCardBodyText.getText() === text,
       {
-        timeout: 15000,
+        timeout: timeouts.noteSave,
         timeoutMsg: `Note hasn't been saved`,
       }
     );
-    await browser.pause(5000);
   }
   async clickNewNoteButton() {
     await this.newNoteButton.click();

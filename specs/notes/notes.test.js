@@ -25,7 +25,7 @@ describe("Notes Tests", function () {
     await mainPage.fillNoteTitle(noteDetails.title);
     await mainPage.fillNoteBody(noteDetails.body);
     await mainPage.focusParentFrame();
-    await mainPage.waitSyncStatusSaved();
+    await mainPage.waitForNoteSaved(noteDetails.body);
     await mainPage.clickUserDetails();
     await mainPage.clickLogoutButton();
     await logoutPage.verifyLogoutPageDisplayed();

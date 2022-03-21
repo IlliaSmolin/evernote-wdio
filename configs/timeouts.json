@@ -1,0 +1,6 @@
+{
+  "waitFor": 10000,
+  "connectionRetry": 120000,
+  "mocha": 60000,
+  "noteSave": 30000
+}
