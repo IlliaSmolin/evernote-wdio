@@ -2,6 +2,7 @@
 
 This project is created to run UI end-to-end tests agains EverNote web-application.
 Please follow the instructions to install project and to run tests.
+Initially tests run on `chromedriver` (local browser), but it can be easily transferred to `Selenoid` in the future.
 
 **Project stack**
 - Language: JavaScript
