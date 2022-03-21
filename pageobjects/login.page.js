@@ -30,13 +30,8 @@ class LoginPage extends Page {
   async clickLoginButton() {
     await this.loginButton.click();
   }
-  async clickContinueButton() {
-    await this.clickLoginButton();
-    await this.passwordField.waitForDisplayed();
-  }
   async clickSignInButton() {
     await this.clickLoginButton();
-    await mainPage.waitForLoaderToDisappear();
   }
 
   async verifyIncorrectPasswordValidatorIsDisplayed() {

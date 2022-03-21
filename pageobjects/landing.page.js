@@ -21,7 +21,6 @@ class LandingPage extends Page {
   }
   async clickLogInButton() {
     await this.logInButton.click();
-    await loginPage.emailField.waitForDisplayed();
   }
 }
 

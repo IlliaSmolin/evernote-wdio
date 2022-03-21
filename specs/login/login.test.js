@@ -10,16 +10,17 @@ describe("Login Tests", function () {
   });
   it("Unsuccessfull login using e-mail", async function () {
     await loginPage.fillEmail(email);
-    await loginPage.clickContinueButton();
+    await loginPage.clickSignInButton();
     await loginPage.fillPassword(password + "1");
-    await loginPage.clickContinueButton();
+    await loginPage.clickSignInButton();
     await loginPage.verifyIncorrectPasswordValidatorIsDisplayed();
   });
   it("Successfull login using e-mail", async function () {
     await loginPage.fillEmail(email);
-    await loginPage.clickContinueButton();
+    await loginPage.clickSignInButton();
     await loginPage.fillPassword(password);
     await loginPage.clickSignInButton();
+    await mainPage.waitForLoaderToDisappear();
     await mainPage.verifyUserIsLoggedIn();
   });
 });

@@ -1,9 +1,14 @@
 const Element = require("./element");
 
-class Image extends Element {
+class Text extends Element {
   constructor(selector) {
     super(selector);
   }
+
+  async getText() {
+    super.initializeElement();
+    return await this.wdioElement.getText();
+  }
 }
 
-module.exports = Image;
+module.exports = Text;

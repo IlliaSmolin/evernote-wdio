@@ -3,4 +3,5 @@ module.exports = {
   Input: require("./wrappers/input.element"),
   Image: require("./wrappers/image.element"),
   Text: require("./wrappers/text.element"),
+  IFrame: require("./wrappers/iframe.element"),
 }
