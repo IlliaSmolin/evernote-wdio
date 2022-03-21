@@ -28,8 +28,12 @@ class MainPage extends Page {
   get noteBody() {
     return new Input("#en-note");
   }
-  get noteCardBodyText() {
-    return new Text(`(//div[contains(@id, "qa-NOTES_SIDEBAR_NOTE_SNIPPET")])[1]`);
+
+  noteCard(index) {
+    return new Text(`(//article[contains(@id, "qa-NOTES_SIDEBAR_NOTE")])[${index}]`);
+  }
+  noteCardBodyText(index) {
+    return new Text(`(//div[contains(@id, "qa-NOTES_SIDEBAR_NOTE_SNIPPET")])[${index}]`);
   }
 
   async waitForLoaderToDisappear() {
@@ -38,7 +42,7 @@ class MainPage extends Page {
   }
   async waitForNoteSaved(text) {
     await browser.waitUntil(
-      async () => await this.noteCardBodyText.getText() === text,
+      async () => await this.noteCardBodyText(1).getText() === text,
       {
         timeout: timeouts.noteSave,
         timeoutMsg: `Note hasn't been saved`,
@@ -53,6 +57,12 @@ class MainPage extends Page {
   }
   async clickLogoutButton() {
     await this.logoutButton.click();
+  }
+  async openNoteByIndex(index) {
+    await this.noteCard(index).click();
+  }
+  async openFirstNote() {
+    await this.openNoteByIndex(1);
   }
   async fillNoteTitle(text) {
     await this.noteTitle.setValue(text);
@@ -70,6 +80,9 @@ class MainPage extends Page {
 
   async verifyUserIsLoggedIn() {
     expect(await this.userDetails.isDisplayed()).toEqual(true);
+  }
+  async verifyNoteTitleEquals(text) {
+    expect(await this.noteTitle.getValue()).toEqual(text);
   }
 }
 

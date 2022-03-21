@@ -30,7 +30,9 @@ describe("Notes Tests", function () {
     await mainPage.clickLogoutButton();
     await logoutPage.verifyLogoutPageDisplayed();
   });
-  it.skip("Login again and make sure you open the note created previously", async function () {
-    
+  it("Login again and make sure you open the note created previously", async function () {
+    await mainPage.openFirstNote();
+    await mainPage.focusNoteFrame();
+    await mainPage.verifyNoteTitleEquals(noteDetails.title);
   });
 });

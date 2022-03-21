@@ -9,6 +9,11 @@ class Input extends Element {
     await super.initializeElement();
     await this.wdioElement.setValue(value);
   }
+
+  async getValue() {
+    await super.initializeElement();
+    return await this.wdioElement.getValue();
+  }
 }
 
 module.exports = Input;
