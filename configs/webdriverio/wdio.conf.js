@@ -147,7 +147,13 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec'],
+  reporters: [
+    'spec', 
+    ['allure', {
+      outputDir: 'allure-results',
+      disableWebdriverStepsReporting: true,
+    }],
+  ],
 
 
 
@@ -295,6 +301,11 @@ exports.config = {
    */
   // afterSession: function (config, capabilities, specs) {
   // },
+  afterStep: function (test, scenario, { error, duration, passed }) {
+    if (error) {
+      browser.takeScreenshot();
+    }
+  },
   /**
    * Gets executed after all workers got shut down and the process is about to exit. An error
    * thrown in the onComplete hook will result in the test run failing.

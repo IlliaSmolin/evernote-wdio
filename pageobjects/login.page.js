@@ -1,5 +1,6 @@
 const Page = require("./page");
 const { Input, Button, Text } = require("../elements/index");
+const allureHelper = require("../helpers/allure.helper");
 
 class LoginPage extends Page {
   constructor() {
@@ -21,19 +22,20 @@ class LoginPage extends Page {
   }
 
   async fillEmail(email) {
+    allureHelper.addStep(`Fill "Email" field with value: ${email}`);
     await this.emailField.setValue(email);
   }
   async fillPassword(password) {
+    allureHelper.addStep(`Fill "Password" field with value: ${password}`);
     await this.passwordField.setValue(password);
   }
-  async clickLoginButton() {
-    await this.loginButton.click();
-  }
   async clickSignInButton() {
-    await this.clickLoginButton();
+    allureHelper.addStep(`Click "Continue/Sign In" button`);
+    await this.loginButton.click();
   }
 
   async verifyIncorrectPasswordValidatorIsDisplayed() {
+    allureHelper.addStep(`Verify "Incorrect Password" validator appears`);
     await this.incorrectPasswordValidator.waitForDisplayed();
     expect(await this.incorrectPasswordValidator.isDisplayed()).toBe(true);
   }

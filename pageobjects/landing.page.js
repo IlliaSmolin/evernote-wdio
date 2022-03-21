@@ -1,7 +1,6 @@
 const Page = require("./page");
 const { Image, Button } = require("../elements/index");
-
-const loginPage = require("./login.page");
+const allureHelper = require("../helpers/allure.helper");
 
 class LandingPage extends Page {
   constructor() {
@@ -20,6 +19,7 @@ class LandingPage extends Page {
     await this.logo.waitForDisplayed();
   }
   async clickLogInButton() {
+    allureHelper.addStep(`Click "Log In" button`);
     await this.logInButton.click();
   }
 }
