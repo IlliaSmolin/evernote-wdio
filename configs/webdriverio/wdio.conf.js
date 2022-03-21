@@ -152,6 +152,7 @@ exports.config = {
     ['allure', {
       outputDir: 'allure-results',
       disableWebdriverStepsReporting: true,
+      disableWebdriverScreenshotsReporting: false
     }],
   ],
 
@@ -301,9 +302,9 @@ exports.config = {
    */
   // afterSession: function (config, capabilities, specs) {
   // },
-  afterStep: function (test, scenario, { error, duration, passed }) {
+  afterTest: async function (test, scenario, { error, duration, passed }) {
     if (error) {
-      browser.takeScreenshot();
+      await browser.takeScreenshot();
     }
   },
   /**
