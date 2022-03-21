@@ -11,6 +11,6 @@
     "wdio-chromedriver-service": "^7.3.1"
   },
   "scripts": {
-    "test": "wdio run configs/wdio.conf.js"
+    "test": "wdio run configs/webdriverio/wdio.conf.js"
   }
 }
