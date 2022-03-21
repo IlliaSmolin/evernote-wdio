@@ -1,4 +1,10 @@
-class MainPage {
+const Page = require("./page");
+
+class MainPage extends Page {
+  constructor() {
+    super();
+  }
+
   get userDetails() {
     return $("#qa-NAV_USER");
   }

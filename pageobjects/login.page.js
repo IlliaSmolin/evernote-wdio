@@ -1,6 +1,12 @@
+const Page = require("./page");
 const mainPage = require("./main.page");
 
-class LoginPage {
+class LoginPage extends Page {
+  constructor() {
+    super();
+    this.url = "/Login.action";
+  }
+
   get emailField() {
     return $("#username");
   }

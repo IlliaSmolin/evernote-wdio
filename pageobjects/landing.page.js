@@ -1,6 +1,11 @@
+const Page = require("./page");
 const loginPage = require("./login.page");
 
-class LandingPage {
+class LandingPage extends Page {
+  constructor() {
+    super();
+  }
+
   get logo() {
     return $(".global-logo");
   }
@@ -9,7 +14,7 @@ class LandingPage {
   }
 
   async open() {
-    await browser.url("/");
+    await super.open();
     await this.logo.waitForDisplayed();
   }
   async clickLogInButton() {
