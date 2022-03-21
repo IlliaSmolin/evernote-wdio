@@ -1,4 +1,5 @@
 const Page = require("./page");
+const { Button, Text } = require("../elements/index");
 
 class MainPage extends Page {
   constructor() {
@@ -6,10 +7,10 @@ class MainPage extends Page {
   }
 
   get userDetails() {
-    return $("#qa-NAV_USER");
+    return new Button("#qa-NAV_USER");
   }
   get spinner() {
-    return $(`//span[text()="Getting started…"]`);
+    return new Text(`//span[text()="Getting started…"]`);
   }
 
   async waitForLoaderToDisappear() {

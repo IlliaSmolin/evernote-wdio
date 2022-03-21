@@ -1,5 +1,6 @@
 const Page = require("./page");
 const mainPage = require("./main.page");
+const { Input, Button, Text } = require("../elements/index");
 
 class LoginPage extends Page {
   constructor() {
@@ -8,28 +9,25 @@ class LoginPage extends Page {
   }
 
   get emailField() {
-    return $("#username");
+    return new Input("#username");
   }
   get passwordField() {
-    return $("#password");
+    return new Input("#password");
   }
   get loginButton() {
-    return $("#loginButton");
+    return new Button("#loginButton");
   }
   get incorrectPasswordValidator() {
-    return $(`//div[contains(text(), "Incorrect password")]`);
+    return new Text(`//div[contains(text(), "Incorrect password")]`);
   }
 
   async fillEmail(email) {
-    await this.emailField.waitForDisplayed();
     await this.emailField.setValue(email);
   }
   async fillPassword(password) {
-    await this.passwordField.waitForDisplayed();
     await this.passwordField.setValue(password);
   }
   async clickLoginButton() {
-    await this.loginButton.waitForDisplayed();
     await this.loginButton.click();
   }
   async clickContinueButton() {

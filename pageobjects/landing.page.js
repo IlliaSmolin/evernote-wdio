@@ -1,4 +1,6 @@
 const Page = require("./page");
+const { Image, Button } = require("../elements/index");
+
 const loginPage = require("./login.page");
 
 class LandingPage extends Page {
@@ -7,10 +9,10 @@ class LandingPage extends Page {
   }
 
   get logo() {
-    return $(".global-logo");
+    return new Image(".global-logo");
   }
   get logInButton() {
-    return $(`//a[text()="Log In"]`);
+    return new Button(`//a[text()="Log In"]`);
   }
 
   async open() {
@@ -18,7 +20,6 @@ class LandingPage extends Page {
     await this.logo.waitForDisplayed();
   }
   async clickLogInButton() {
-    await this.logInButton.waitForDisplayed();
     await this.logInButton.click();
     await loginPage.emailField.waitForDisplayed();
   }
