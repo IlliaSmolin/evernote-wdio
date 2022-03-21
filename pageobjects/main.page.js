@@ -29,6 +29,15 @@ class MainPage extends Page {
   get noteBody() {
     return new Input("#en-note");
   }
+  get noteActions() {
+    return new Button("#qa-NOTE_ACTIONS");
+  }
+  get actionDelete() {
+    return new Button("#qa-ACTION_DELETE");
+  }
+  get createYourFirstNoteText() {
+    return new Text(`//h2[text()="Create your first note"]`);
+  }
 
   noteCard(index) {
     return new Text(`(//article[contains(@id, "qa-NOTES_SIDEBAR_NOTE")])[${index}]`);
@@ -52,6 +61,10 @@ class MainPage extends Page {
       }
     );
   }
+  async waitForCreateFirstNoteText() {
+    allureHelper.addStep(`Wait for the "Create your first note" text to be displayed`);
+    await this.createYourFirstNoteText.waitForDisplayed();
+  }
   async clickNewNoteButton() {
     allureHelper.addStep(`Click "New Note" button`);
     await this.newNoteButton.click();
@@ -64,12 +77,20 @@ class MainPage extends Page {
     allureHelper.addStep(`Click "Logout" button`);
     await this.logoutButton.click();
   }
+  async clickDeleteNote() {
+    allureHelper.addStep(`Click "Move To Trash" button`);
+    await this.actionDelete.click();
+  }
   async openNoteByIndex(index) {
     allureHelper.addStep(`Open Note with index: ${index}`);
     await this.noteCard(index).click();
   }
   async openFirstNote() {
     await this.openNoteByIndex(1);
+  }
+  async openNoteActions() {
+    allureHelper.addStep(`Click "Note Actions" button`);
+    await this.noteActions.click();
   }
   async fillNoteTitle(text) {
     allureHelper.addStep(`Fill "Note Title" text field with value: ${text}`);

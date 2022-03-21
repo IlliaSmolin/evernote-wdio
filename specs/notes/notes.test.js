@@ -19,6 +19,7 @@ describe("Notes Tests", function () {
     await loginPage.clickSignInButton();
     await mainPage.waitForLoaderToDisappear();
   });
+
   it("Login and write a note followed by a logout", async function () {
     await mainPage.clickNewNoteButton();
     await mainPage.focusNoteFrame();
@@ -34,5 +35,12 @@ describe("Notes Tests", function () {
     await mainPage.openFirstNote();
     await mainPage.focusNoteFrame();
     await mainPage.verifyNoteTitleEquals(noteDetails.title);
+    await mainPage.focusParentFrame();
+  });
+
+  this.afterAll(async function() {
+    await mainPage.openNoteActions();
+    await mainPage.clickDeleteNote();
+    await mainPage.waitForCreateFirstNoteText();
   });
 });
